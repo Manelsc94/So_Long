@@ -14,7 +14,7 @@ This implementation features a custom theme with a player navigating a maze-like
 
 ## ✨ Key Features
 
-- **2D Gameplay**: Top-down view with smooth player movement using W, A, S, D keys (or Z, Q, S, D).
+- **2D Gameplay**: Top-down view with smooth player movement using W, A, S, D keys (or arrow keys).
 - **Map Parsing**: Reads `.ber` map files with walls (`1`), empty spaces (`0`), collectibles (`C`), exits (`E`), and player start (`P`).
 - **Game Mechanics**:
   - Collect all items before exiting.
@@ -62,8 +62,8 @@ This implementation features a custom theme with a player navigating a maze-like
    ```
 
 2. **Controls**:
-   - **W/Up or Z**: Move up
-   - **A/Left or Q**: Move left
+   - **W/Up**: Move up
+   - **A/Left**: Move left
    - **S/Down**: Move down
    - **D/Right**: Move right
    - **ESC**: Quit the game
@@ -92,14 +92,23 @@ This implementation features a custom theme with a player navigating a maze-like
 
 ```
 So_Long/
-├── Makefile          # Build automation script
-├── includes/         # Header files (e.g., so_long.h)
-├── src/              # Source files for mandatory part
-├── src_bonus/        # Source files for bonus features
-├── libft/            # Libft library directory
+├── foundation/         # Initializer of maps and parser
 ├── maps/             # Example .ber map files
-├── textures/         # Sprite and texture files
+├── texture/         # Sprite and texture files
+├── main.c            # Main function
+├── so_long.h        # Header file
 └── so_long           # Compiled executable (generated)
+```
+
+```
+So_Long_bonus/
+├── foes/              # Enemies
+├── foundation/         # Initializer of maps and parser
+├── maps/             # Example .ber map files
+├── texture/         # Sprite and texture files
+├── main.c            # Main function
+├── so_long_bonus.h        # Header file
+└── so_long_bonus           # Compiled executable (generated)
 ```
 
 ## 🛠️ Makefile Commands
