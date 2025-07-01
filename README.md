@@ -91,24 +91,24 @@ This implementation features a custom theme with a player navigating a maze-like
 ## 📂 Project Structure
 
 ```
-So_Long/
+so_long/
 ├── foundation/         # Initializer of maps and parser
-├── maps/             # Example .ber map files
-├── texture/         # Sprite and texture files
-├── main.c            # Main function
-├── so_long.h        # Header file
-└── so_long           # Compiled executable (generated)
+├── maps/               # Example .ber map files
+├── texture/            # Sprite and texture files
+├── main.c              # Main function
+├── so_long.h           # Header file
+└── so_long             # Compiled executable (generated)
 ```
 
 ```
-So_Long_bonus/
-├── foes/              # Enemies
+so_long_bonus/
+├── foes/               # Enemies
 ├── foundation/         # Initializer of maps and parser
-├── maps/             # Example .ber map files
-├── texture/         # Sprite and texture files
-├── main.c            # Main function
-├── so_long_bonus.h        # Header file
-└── so_long_bonus           # Compiled executable (generated)
+├── maps/               # Example .ber map files
+├── texture/            # Sprite and texture files
+├── main.c              # Main function
+├── so_long_bonus.h     # Header file
+└── so_long_bonus       # Compiled executable (generated)
 ```
 
 ## 🛠️ Makefile Commands
