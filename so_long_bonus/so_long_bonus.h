@@ -6,7 +6,7 @@
 /*   By: mde-agui <mde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:12:39 by mde-agui          #+#    #+#             */
-/*   Updated: 2024/09/26 15:25:01 by mde-agui         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:57:45 by mde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ void	calculate_map_size(t_game *game);
 
 //Handles the enemy movement
 void	move_enemy_x(t_game *game, int i, int player_x, int player_y);
-void	move_enemy_straight(t_game *game, int i, int player_x, int player_y);
-bool	can_move_diagonal(t_game *game, int new_x, int new_y);
-void	move_enemy_diagonal(t_game *game, int i, int player_x, int player_y);
+//void	move_enemy_straight(t_game *game, int i, int player_x, int player_y);
+//bool	can_move_diagonal(t_game *game, int new_x, int new_y);
+//void	move_enemy_diagonal(t_game *game, int i, int player_x, int player_y);
 
 //Handles the patrol movement, updates the map and manages both foes' movements
 void	move_the_foe(t_game *game);

@@ -13,13 +13,26 @@
 
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS		=	-L./minilibx-linux -lmlx -lm -lXext -lX11 -I./minilibx-linux
-INC				=	.
+INC				=	. -I./libft
 HEADER			=	so_long.h
 HEADER_BONUS	=	so_long_bonus.h
 LIBFT			=	./libft/libft.a
 NAME			=	so_long/so_long
 NAME_BONUS		=	so_long_bonus/so_long_bonus
+
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+	MLX_FLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm -I./minilibx-linux
+	MLX 	  = minilibx-linux
+	MLX_GIT   = https://github.com/42Paris/minilibx-linux.git
+else ifeq ($(UNAME_S),Darwin)
+	MLX_FLAGS = -L./minilibx-opengl -lmlx -framework OpenGL -framework AppKit -I./minilibx-opengl
+	MLX 	  = minilibx-opengl
+	MLX_GIT   = https://github.com/42Paris/minilibx-opengl.git
+endif
+
+LIBFT_GIT	=	https://github.com/Manelsc94/Libft.git
 
 SRCS		=	so_long/main.c \
 				so_long/utilities/freedom_and_exit.c \
@@ -47,36 +60,45 @@ SRCS_BONUS	=	so_long_bonus/main.c \
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 
-MLX			=	minilibx-linux
-
-.PHONY: all clean fclean re mlx bonus
+.PHONY: all clean fclean re mlx libft bonus
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(INC) -I./minilibx-linux -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC) -I./$(MLX) -c $< -o $@
 
-mlx:
-	$(MAKE) -C ./minilibx-linux
-
-$(LIBFT):
+libft:
+	if [ ! -d "./libft" ]; then \
+		git clone $(LIBFT_GIT) libft; \
+	fi
 	$(MAKE) -C ./libft
 
-$(NAME): $(OBJS) $(LIBFT) mlx
+mlx:
+	if [ ! -d "$(MLX)" ]; then \
+		git clone $(MLX_GIT) $(MLX); \
+	fi
+	$(MAKE) -C ./$(MLX)
+
+
+$(LIBFT): libft
+
+$(NAME): $(LIBFT) mlx $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
-$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT) mlx
+$(NAME_BONUS): $(LIBFT) mlx $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX_FLAGS) -o $(NAME_BONUS)
 
 bonus: $(NAME_BONUS)
 
 clean:
 		$(RM) $(OBJS) $(OBJS_BONUS)
-		$(MAKE) clean -C ./libft
-		$(MAKE) clean -C ./minilibx-linux
+		if [ -d "./libft" ]; then $(MAKE) clean -C ./libft; fi
+		if [ -d "./$(MLX)" ]; then $(MAKE) clean -C ./$(MLX); fi
 
 fclean: clean
 		$(RM) -f $(NAME) $(NAME_BONUS)
-		$(MAKE) fclean -C ./libft
+		if [ -d "./libft" ]; then $(MAKE) fclean -C ./libft; fi
+		$(RM) -rf ./libft
+		$(RM) -rf ./$(MLX)
 
 re: fclean all

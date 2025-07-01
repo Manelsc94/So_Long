@@ -6,7 +6,7 @@
 /*   By: mde-agui <mde-agui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 01:55:13 by mde-agui          #+#    #+#             */
-/*   Updated: 2024/09/26 15:31:36 by mde-agui         ###   ########.fr       */
+/*   Updated: 2024/10/04 22:11:51 by mde-agui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	check_enemy_collision(t_game *game)
 int	update_game(t_game *game)
 {
 	game->frame_count++;
-	if (game->frame_count >= 500)
+	if (game->frame_count >= 140)
 	{
 		game->c_frame = (game->c_frame + 1) % 2;
 		if (game->c_frame < 0 || game->c_frame >= 2)
